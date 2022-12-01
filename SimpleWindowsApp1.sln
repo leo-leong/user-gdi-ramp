@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleWindowsApp1", "SimpleWindowsApp1\SimpleWindowsApp1.vcxproj", "{F2867BF9-49E9-4615-B180-868314235EDC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1.SimpleWindowsApp1", "SimpleWindowsApp1\SimpleWindowsApp1.vcxproj", "{F2867BF9-49E9-4615-B180-868314235EDC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PaintingLab", "PaintingLab\PaintingLab.vcxproj", "{1E9138E1-50FB-4F2F-A3DE-F2A9F030999F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2.PaintingLab", "PaintingLab\PaintingLab.vcxproj", "{1E9138E1-50FB-4F2F-A3DE-F2A9F030999F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3.TimersLab", "TimersLab\TimersLab.vcxproj", "{1CF9A50C-387A-4A9B-8AC2-1FDCA3D60E7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{1E9138E1-50FB-4F2F-A3DE-F2A9F030999F}.Release|x64.Build.0 = Release|x64
 		{1E9138E1-50FB-4F2F-A3DE-F2A9F030999F}.Release|x86.ActiveCfg = Release|Win32
 		{1E9138E1-50FB-4F2F-A3DE-F2A9F030999F}.Release|x86.Build.0 = Release|Win32
+		{1CF9A50C-387A-4A9B-8AC2-1FDCA3D60E7D}.Debug|x64.ActiveCfg = Debug|x64
+		{1CF9A50C-387A-4A9B-8AC2-1FDCA3D60E7D}.Debug|x64.Build.0 = Debug|x64
+		{1CF9A50C-387A-4A9B-8AC2-1FDCA3D60E7D}.Debug|x86.ActiveCfg = Debug|Win32
+		{1CF9A50C-387A-4A9B-8AC2-1FDCA3D60E7D}.Debug|x86.Build.0 = Debug|Win32
+		{1CF9A50C-387A-4A9B-8AC2-1FDCA3D60E7D}.Release|x64.ActiveCfg = Release|x64
+		{1CF9A50C-387A-4A9B-8AC2-1FDCA3D60E7D}.Release|x64.Build.0 = Release|x64
+		{1CF9A50C-387A-4A9B-8AC2-1FDCA3D60E7D}.Release|x86.ActiveCfg = Release|Win32
+		{1CF9A50C-387A-4A9B-8AC2-1FDCA3D60E7D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

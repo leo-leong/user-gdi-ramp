@@ -24,6 +24,7 @@
     <ProjectGuid>{1e9138e1-50fb-4f2f-a3de-f2a9f030999f}</ProjectGuid>
     <RootNamespace>PaintingLab</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>2.PaintingLab</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
