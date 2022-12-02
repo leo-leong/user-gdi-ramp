@@ -39,15 +39,15 @@ void OnTimer(HWND hWnd, UINT uMsg, UINT_PTR nID, DWORD dwTime)
 
         //Part 1 & 2: invalidates region to trigger paint
         //NULL invalidates the entire client area
-        InvalidateRect(hWnd, NULL, true);
+        //InvalidateRect(hWnd, NULL, true);
 
-        ////Part 3: draw immediately
-        //HDC hdc = GetDC(hWnd);
-        //if (GetClientRect(hWnd, &rect))
-        //{
-        //    FillRect(hdc, &rect, (HBRUSH)colorindex);
-        //}
-        //ReleaseDC(hWnd, hdc);
+        //Part 3: draw immediately
+        HDC hdc = GetDC(hWnd);
+        if (GetClientRect(hWnd, &rect))
+        {
+            FillRect(hdc, &rect, (HBRUSH)colorindex);
+        }
+        ReleaseDC(hWnd, hdc);
     }
     else
     {
@@ -64,9 +64,9 @@ void OnCreate(HWND hWnd)
     //SetTimer(hWnd, timer1id, 2000, (TIMERPROC)NULL);
     //SetTimer(hWnd, timer2id, 15000, (TIMERPROC)NULL);
 
-    //Part 2: 2sec and 30sec timers
-    SetTimer(hWnd, timer1id, 2000, (TIMERPROC)OnTimer);
-    SetTimer(hWnd, timer2id, 30000, (TIMERPROC)OnTimer);
+    ////Part 2: 2sec and 30sec timers
+    //SetTimer(hWnd, timer1id, 2000, (TIMERPROC)OnTimer);
+    //SetTimer(hWnd, timer2id, 30000, (TIMERPROC)OnTimer);
 
     //Part 3: 1sec timer
     SetTimer(nullptr, timer3id, 1000, (TIMERPROC)OnTimer);
@@ -89,9 +89,10 @@ LRESULT CALLBACK MainWindowProc(
         PostQuitMessage(1);
         break;
 
-    case WM_PAINT:
-        OnPaint(hWnd);
-        break;
+    ////Part 2:
+    //case WM_PAINT:
+    //    OnPaint(hWnd);
+    //    break;
 
     case WM_CREATE:
         OnCreate(hWnd);
