@@ -29,6 +29,7 @@ LRESULT CALLBACK MainWindowProc(
         return DefWindowProc(hWnd, uMsg, wParam, lParam);
     }
     
+    return 0;
 }
 
 int APIENTRY _tWinMain(
