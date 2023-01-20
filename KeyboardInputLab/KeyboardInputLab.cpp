@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <tchar.h>
 
+//Part 1: print keystroke to debug output
 void HandleKeystrokes(
     HWND hwnd,
     UINT uMsg,
@@ -52,6 +53,71 @@ void HandleKeystrokes(
     }
 }
 
+void HandleCharacters(
+    HWND hWnd,
+    UINT uMsg,
+    WPARAM wParam,
+    LPARAM lParam)
+{
+    RECT rect{};
+    HFONT hfont{};
+    HBRUSH hbrush{};
+    HGDIOBJ originfont{};
+    COLORREF colorbackground = RGB(255, 255, 255);    //white
+    COLORREF colortext = RGB(0, 0, 0);   //black
+
+    HDC hdc = GetWindowDC(hWnd);
+    if (hdc)
+    {
+        if (GetClientRect(hWnd, &rect))
+        {
+            // Brush to wipe out existing content and reset the canvas
+            hbrush = CreateSolidBrush(colorbackground);
+            if (hbrush)
+            {
+                FillRect(hdc, &rect, hbrush);
+                originfont = SelectObject(hdc, GetStockObject(DC_PEN));
+
+                //Part 2: draw keystroke within window
+                //Create arial font with height of 48
+                hfont = CreateFont(48, 0, 0, 0, FW_DONTCARE, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
+                    CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, VARIABLE_PITCH, TEXT("Arial"));
+
+                //Adding font to context
+                SelectObject(hdc, hfont);
+
+                //Adding text and background color, then draw it
+                SetTextColor(hdc, colortext);
+                SetBkColor(hdc, colorbackground);
+                TCHAR text[] = { wParam };
+                int result = DrawText(hdc, text, 1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+
+                ////Part 1: print keystroke to debug output
+                //TCHAR szBuffer[100];
+                //result = _stprintf_s(szBuffer, TEXT("Character: %c\r\n"), wParam);
+                //if (-1 != result)
+                //{
+                //    OutputDebugString(szBuffer);
+                //}
+
+                //Restore original font
+                SelectObject(hdc, originfont);
+
+                DeleteObject(hfont);
+            }
+        }
+        else
+        {
+            MessageBox(hWnd, L"Error calling GetClientRect, exiting now... :)", L"Error", MB_OK);
+            return;
+        }
+
+        ReleaseDC(hWnd, hdc);
+        //EndPaint(hWnd, &paintStruct);
+    }
+
+}
+
 LRESULT CALLBACK MainWindowProc(
     HWND hWnd,
     UINT uMsg,
@@ -88,6 +154,10 @@ LRESULT CALLBACK MainWindowProc(
     case WM_KEYUP:
         HandleKeystrokes(hWnd, uMsg, wParam, lParam);
         break;
+
+    //Lab: Handling Character Messages
+    case WM_CHAR:
+        HandleCharacters(hWnd, uMsg, wParam, lParam);
 
     default:
         return DefWindowProc(hWnd, uMsg, wParam, lParam);
