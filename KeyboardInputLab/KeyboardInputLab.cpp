@@ -86,12 +86,16 @@ void HandleCharacters(
                 //Adding font to context
                 SelectObject(hdc, hfont);
 
+                //Part 3: set text color to red if SHIFT key is down
+                bool bShiftKeyDown = ((unsigned short) GetKeyState(VK_SHIFT)) >> 15;
+                if (bShiftKeyDown) { colortext = RGB(255, 0, 0); }
+
                 //Adding text and background color, then draw it
                 SetTextColor(hdc, colortext);
                 SetBkColor(hdc, colorbackground);
                 TCHAR text[] = { wParam };
                 int result = DrawText(hdc, text, 1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
-
+                
                 ////Part 1: print keystroke to debug output
                 //TCHAR szBuffer[100];
                 //result = _stprintf_s(szBuffer, TEXT("Character: %c\r\n"), wParam);
