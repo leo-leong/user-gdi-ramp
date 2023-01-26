@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <tchar.h>
+#include <CommCtrl.h>
 
 //Part 1: print keystroke to debug output
 void HandleKeystrokes(
@@ -142,6 +143,9 @@ LRESULT CALLBACK MainWindowProc(
         break;
 
     case WM_DESTROY:
+        //Part 4.1: send window message to set hot key
+        SendMessage(hWnd, WM_SETHOTKEY, NULL, 0);
+
         PostQuitMessage(1);
         break;
 
@@ -161,6 +165,10 @@ LRESULT CALLBACK MainWindowProc(
     //Lab: Handling Character Messages
     case WM_CHAR:
         HandleCharacters(hWnd, uMsg, wParam, lParam);
+
+    //Part 4.1: send window message to set hot key
+    case WM_CREATE:
+        SendMessage(hWnd, WM_SETHOTKEY, MAKEWORD('A', HOTKEYF_CONTROL | HOTKEYF_SHIFT), 0);
 
     default:
         return DefWindowProc(hWnd, uMsg, wParam, lParam);
