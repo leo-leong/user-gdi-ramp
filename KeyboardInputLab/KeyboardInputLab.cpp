@@ -117,7 +117,6 @@ void HandleCharacters(
         }
 
         ReleaseDC(hWnd, hdc);
-        //EndPaint(hWnd, &paintStruct);
     }
 
 }
