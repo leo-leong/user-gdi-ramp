@@ -9,7 +9,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2.PaintingLab", "PaintingLa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3.TimersLab", "TimersLab\TimersLab.vcxproj", "{1CF9A50C-387A-4A9B-8AC2-1FDCA3D60E7D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KeyboardInputLab", "KeyboardInputLab\KeyboardInputLab.vcxproj", "{78E732F5-6631-4A7D-8A4B-94A17FE0CD3B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "4.KeyboardInputLab", "KeyboardInputLab\KeyboardInputLab.vcxproj", "{78E732F5-6631-4A7D-8A4B-94A17FE0CD3B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MouseInputLab", "MouseInputLab\MouseInputLab.vcxproj", "{B0EEBF58-0E4A-4EBF-8B24-5DD471D65A1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,14 @@ Global
 		{78E732F5-6631-4A7D-8A4B-94A17FE0CD3B}.Release|x64.Build.0 = Release|x64
 		{78E732F5-6631-4A7D-8A4B-94A17FE0CD3B}.Release|x86.ActiveCfg = Release|Win32
 		{78E732F5-6631-4A7D-8A4B-94A17FE0CD3B}.Release|x86.Build.0 = Release|Win32
+		{B0EEBF58-0E4A-4EBF-8B24-5DD471D65A1F}.Debug|x64.ActiveCfg = Debug|x64
+		{B0EEBF58-0E4A-4EBF-8B24-5DD471D65A1F}.Debug|x64.Build.0 = Debug|x64
+		{B0EEBF58-0E4A-4EBF-8B24-5DD471D65A1F}.Debug|x86.ActiveCfg = Debug|Win32
+		{B0EEBF58-0E4A-4EBF-8B24-5DD471D65A1F}.Debug|x86.Build.0 = Debug|Win32
+		{B0EEBF58-0E4A-4EBF-8B24-5DD471D65A1F}.Release|x64.ActiveCfg = Release|x64
+		{B0EEBF58-0E4A-4EBF-8B24-5DD471D65A1F}.Release|x64.Build.0 = Release|x64
+		{B0EEBF58-0E4A-4EBF-8B24-5DD471D65A1F}.Release|x86.ActiveCfg = Release|Win32
+		{B0EEBF58-0E4A-4EBF-8B24-5DD471D65A1F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
