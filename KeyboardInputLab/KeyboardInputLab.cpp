@@ -143,7 +143,7 @@ LRESULT CALLBACK MainWindowProc(
         break;
 
     case WM_DESTROY:
-        //Part 4.1: send window message to set hot key
+        //Part 1: send window message to set hot key
         SendMessage(hWnd, WM_SETHOTKEY, NULL, 0);
 
         PostQuitMessage(1);
@@ -167,7 +167,7 @@ LRESULT CALLBACK MainWindowProc(
         HandleCharacters(hWnd, uMsg, wParam, lParam);
         break;
 
-    //Part 4.1: send window message to set hot key
+    //Part 1: send window message to set hot key
     case WM_CREATE:
         SendMessage(hWnd, WM_SETHOTKEY, MAKEWORD('A', HOTKEYF_CONTROL | HOTKEYF_SHIFT), 0);
         break;
