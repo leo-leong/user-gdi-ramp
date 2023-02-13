@@ -165,10 +165,12 @@ LRESULT CALLBACK MainWindowProc(
     //Lab: Handling Character Messages
     case WM_CHAR:
         HandleCharacters(hWnd, uMsg, wParam, lParam);
+        break;
 
     //Part 4.1: send window message to set hot key
     case WM_CREATE:
         SendMessage(hWnd, WM_SETHOTKEY, MAKEWORD('A', HOTKEYF_CONTROL | HOTKEYF_SHIFT), 0);
+        break;
 
     default:
         return DefWindowProc(hWnd, uMsg, wParam, lParam);
