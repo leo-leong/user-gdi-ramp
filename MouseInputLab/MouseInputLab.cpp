@@ -4,7 +4,7 @@
 static POINTS ptsBegin;
 static POINTS ptsEnd;
 
-//Part 5: draw line when mouse down
+//Part 1: draw line when mouse down
 void DrawLine(HWND hWnd, LPARAM lParam, int width, COLORREF color)
 {
     HDC hdc;
@@ -28,7 +28,7 @@ void DrawLine(HWND hWnd, LPARAM lParam, int width, COLORREF color)
     ReleaseDC(hWnd, hdc);
 }
 
-//Part 5: draw line when mouse down
+//Part 1: draw line when mouse down
 void HandleMouse(
     HWND hWnd,
     UINT uMsg,
@@ -42,17 +42,21 @@ void HandleMouse(
     switch (uMsg)
     {
     case WM_LBUTTONDOWN:
-        SetCapture(hWnd);
         GetClientRect(hWnd, &rcClient);
         ClipCursor(&rcClient);
         ptsBegin = MAKEPOINTS(lParam);
+
+        //Part 2: capture mouse input
+        SetCapture(hWnd);
         return;
 
     case WM_RBUTTONDOWN:
-        SetCapture(hWnd);
         GetClientRect(hWnd, &rcClient);
         ClipCursor(&rcClient);
         ptsBegin = MAKEPOINTS(lParam);
+
+        //Part 2: capture mouse input
+        SetCapture(hWnd);
         return;
 
     case WM_MOUSEMOVE:
@@ -68,12 +72,16 @@ void HandleMouse(
 
     case WM_LBUTTONUP:
         ClipCursor(NULL);
+
+        //Part 2: capture mouse input
         ReleaseCapture();
         break;
 
 
     case WM_RBUTTONUP:
         ClipCursor(NULL);
+
+        //Part 2: capture mouse input
         ReleaseCapture();
         break;
 
@@ -88,7 +96,7 @@ LRESULT CALLBACK MainWindowProc(
     LPARAM lParam
 )
 {
-    //Part 5: draw line when mouse down
+    //Part 1: draw line when mouse down
     if (uMsg <= WM_MOUSELAST && uMsg >= WM_MOUSEFIRST)
     {
         HandleMouse(hWnd, uMsg, wParam, lParam);
