@@ -97,14 +97,6 @@ void HandleCharacters(
                 TCHAR text[] = { wParam };
                 int result = DrawText(hdc, text, 1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
                 
-                ////Part 1: print keystroke to debug output
-                //TCHAR szBuffer[100];
-                //result = _stprintf_s(szBuffer, TEXT("Character: %c\r\n"), wParam);
-                //if (-1 != result)
-                //{
-                //    OutputDebugString(szBuffer);
-                //}
-
                 //Restore original font
                 SelectObject(hdc, originfont);
 
@@ -129,12 +121,12 @@ LRESULT CALLBACK MainWindowProc(
     LPARAM lParam
 )
 {
-    PAINTSTRUCT paintStruct;
-    HDC hdc = BeginPaint(hWnd, &paintStruct);
-    if (hdc)
-    {
-        EndPaint(hWnd, &paintStruct);
-    }
+    //PAINTSTRUCT paintStruct;
+    //HDC hdc = BeginPaint(hWnd, &paintStruct);
+    //if (hdc)
+    //{
+    //    EndPaint(hWnd, &paintStruct);
+    //}
 
     switch (uMsg)
     {
@@ -143,7 +135,7 @@ LRESULT CALLBACK MainWindowProc(
         break;
 
     case WM_DESTROY:
-        //Part 1: send window message to set hot key
+        //Part 4: send window message to set hot key
         SendMessage(hWnd, WM_SETHOTKEY, NULL, 0);
 
         PostQuitMessage(1);
@@ -162,14 +154,28 @@ LRESULT CALLBACK MainWindowProc(
         HandleKeystrokes(hWnd, uMsg, wParam, lParam);
         break;
 
-    //Lab: Handling Character Messages
+    //Part 2: Handling Character Messages
     case WM_CHAR:
         HandleCharacters(hWnd, uMsg, wParam, lParam);
         break;
 
-    //Part 1: send window message to set hot key
+    //Part 4: send window message to set hot key
     case WM_CREATE:
         SendMessage(hWnd, WM_SETHOTKEY, MAKEWORD('A', HOTKEYF_CONTROL | HOTKEYF_SHIFT), 0);
+        break;
+
+	//Part 4: handle the hot key command and popup message box
+    case WM_SYSCOMMAND:
+        if (wParam == SC_HOTKEY)
+        {
+            MessageBox(hWnd, L"Hot key sequence CONTROL+SHIFT+A received", L"Hot Key Command", MB_OK);
+            return(TRUE);
+        }
+        else
+        {
+            //Part 4: not calling the default window proc essentially swallows all sys commands and you won't be able to e.g. close a window
+            return DefWindowProc(hWnd, uMsg, wParam, lParam);
+        }
         break;
 
     default:
