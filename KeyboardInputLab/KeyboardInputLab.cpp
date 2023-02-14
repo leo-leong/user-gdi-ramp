@@ -135,9 +135,11 @@ LRESULT CALLBACK MainWindowProc(
         break;
 
     case WM_DESTROY:
-        //Part 4: send window message to set hot key
-        SendMessage(hWnd, WM_SETHOTKEY, NULL, 0);
+        ////Part 4: send window message to set hot key
+        //SendMessage(hWnd, WM_SETHOTKEY, NULL, 0);
 
+        //Part 4 extra: alternate way to set window hot key
+        UnregisterHotKey(hWnd, 100);
         PostQuitMessage(1);
         break;
 
@@ -159,23 +161,31 @@ LRESULT CALLBACK MainWindowProc(
         HandleCharacters(hWnd, uMsg, wParam, lParam);
         break;
 
-    //Part 4: send window message to set hot key
     case WM_CREATE:
-        SendMessage(hWnd, WM_SETHOTKEY, MAKEWORD('A', HOTKEYF_CONTROL | HOTKEYF_SHIFT), 0);
+        ////Part 4: send window message to set hot key
+        //SendMessage(hWnd, WM_SETHOTKEY, MAKEWORD('A', HOTKEYF_CONTROL | HOTKEYF_SHIFT), 0);
+
+        //Part 4 extra: alternate way to set window hot key
+        RegisterHotKey(hWnd, 100, MOD_CONTROL | MOD_SHIFT, L'A');
         break;
 
-	//Part 4: handle the hot key command and popup message box
-    case WM_SYSCOMMAND:
-        if (wParam == SC_HOTKEY)
-        {
-            MessageBox(hWnd, L"Hot key sequence CONTROL+SHIFT+A received", L"Hot Key Command", MB_OK);
-            return(TRUE);
-        }
-        else
-        {
-            //Part 4: not calling the default window proc essentially swallows all sys commands and you won't be able to e.g. close a window
-            return DefWindowProc(hWnd, uMsg, wParam, lParam);
-        }
+	////Part 4: handle the hot key command and popup message box
+ //   case WM_SYSCOMMAND:
+ //       if (wParam == SC_HOTKEY)
+ //       {
+ //           MessageBox(hWnd, L"Hot key sequence CONTROL+SHIFT+A received", L"Hot Key Command", MB_OK);
+ //           return(TRUE);
+ //       }
+ //       else
+ //       {
+ //           //Part 4: not calling the default window proc essentially swallows all sys commands and you won't be able to e.g. close a window
+ //           return DefWindowProc(hWnd, uMsg, wParam, lParam);
+ //       }
+ //       break;
+
+    //Part 4 extra: WM_HOTKEY only works when RegisterHotKey is used
+    case WM_HOTKEY:
+        MessageBox(hWnd, L"Hot key sequence CONTROL+SHIFT+A received", L"Hot Key Command", MB_OK);
         break;
 
     default:
